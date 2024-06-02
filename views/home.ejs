@@ -1,0 +1,146 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      background-color: #E50914;
+    }
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+      cursor: pointer;
+      color: black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .movie-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 60%;
+      height: auto;
+      margin-left: 20%;
+    }
+    .movie-poster {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+    .movie-details {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .movie-card:hover .movie-details {
+      opacity: 1;
+    }
+    .movie-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .movie-year {
+      font-size: 14px;
+    }
+    .delete-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+</style>
+
+<div class="container">
+  <% if (!locals.user) { %>
+    <div id="note">
+      <h1 id="mo">Fasal Movies, It is a movie library, search to get details</h1>
+      <p>Note: Please login to create a playlist, even then you can search for movies without logging in</p>
+    </div>
+  <% } %>
+  
+  <% if (locals.user) { %>
+    <% const userMovies = movies.filter(movie => movie.user && movie.user.id === locals.user.id); %>
+    <% if (userMovies.length == 0) { %>
+      <div id="note">
+        <h1 id="mo">Your Playlist is empty, search to add movies</h1>
+        <p>Search for movies and add them to your playlist</p>
+      </div>
+    <% } %>
+  <% } %>
+  
+  <main>
+    <div class="search-container">
+      <input type="text" placeholder="Enter Movie Name" id="movie-name" required>
+      <button id="clicked">Search ></button>
+    </div>
+  </main>
+  
+  <div id="result"></div>
+  
+  <% if (locals.user) { %>
+    <div id="add-to-playlist"></div>
+  <% } %>
+
+  <% if (locals.user) { %>
+    <% const userMovies = movies.filter(movie => movie.user && movie.user.id === locals.user.id); %>
+    <% if (userMovies.length > 0) { %>
+      <center>
+        <h1 style="font-size: 30px; margin-bottom: 20px; margin-top: 10px;">
+          Your Playlist
+          <button id="share-playlist">Share</button>
+          <input type="hidden" id="user-id" value="<%= user._id %>">
+        </h1>
+      </center>
+    <% } %>
+  <% } %>
+
+  <div class="movie-grid">
+    <% for (let list of movies) { %>
+      <% if (locals.user && locals.user.id === list.user.id) { %>
+        <div class="movie-card">
+          <img class="movie-poster" src="<%= list.poster %>" alt="<%= list.movie %> Poster">
+          <div class="movie-details">
+            <h3 class="movie-title"><%= list.movie %></h3>
+            <p class="movie-year"><%= list.year %></p>
+            <span class="delete-button">
+              <a href="/movies/destroy/<%= list._id %>">
+                <i class="material-icons">delete</i>
+              </a>
+            </span>
+          </div>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
+</div>
+
+<script src="/scripts/script.js"></script>

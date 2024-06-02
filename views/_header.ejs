@@ -1,0 +1,22 @@
+<div class="navbar">
+    <% if(locals.user){ %>
+      <ul class="nav1">
+        <li><h1><span class="logo1">F</span><spa class="logo3">asa</spa><span class="l">l</span><span class="logo2">M</span><span class="logo4">ovies</span></h1></li>
+        <li class="right-link"> </li>
+        <li class="right-links2"><a href="/users/signout">Main</a></li>
+      </ul>
+    <% }else if (req.path === '/movies/share/:id'){ %>
+      <ul class="nav1">
+        <li><h1><span class="logo1">F</span><spa class="logo3">asa</spa><span class="l">l</span><span class="logo2">M</span><span class="logo4">ovies</span></h1></li>
+        <li class="right-link"> </li>
+        <li class="right-links1"><a href="/users/signout">Main</a></li>
+      </ul>
+    <% }else{ %>
+      <ul class="nav1">
+        <li><h1><span class="logo1">F</span><spa class="logo3">asa</spa><span class="l">l</span><span class="logo2">M</span><span class="logo4">ovies</span></h1></li>
+        <li class="right-link"> </li>
+        <li class="right-links1"><a href="/users/signin">Sign In</a></li>
+        <li class="right-links2"><a href="/users/signup">Sign Up</a></li>
+      </ul>
+    <%}%>
+  </div>
