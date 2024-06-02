@@ -1,5 +1,9 @@
 # Fasal Movie Library WebApp
 
+## Authors
+
+- [@srikanth](https://github.com/srikanth30510)
+
 ## Introduction
 
 Fasal Movie Library WebApp is a web application designed to allow users to search for movies, view details about them, and create playlists of their favorite movies. It utilizes various technologies such as NodeJS, ExpressJS, MongoDB, and OMDB API to provide a seamless movie browsing experience.
@@ -37,6 +41,24 @@ To run the application on your local machine, follow these steps:
 - Ensure that you have NodeJS and MongoDB installed on your system before running the application.
 - Customize the application further by adding additional features such as user reviews, ratings, or integration with other movie APIs.(Feature Implementation)
 - Regularly update dependencies and security features to ensure the application remains robust and secure.
-- Provide clear documentation and support for users to enhance their experience with the application.(Feature Implementation)
+- Provide clear documentation and support for users to enhance their experience with the application.(Feature Implementation).
 
+
+## Demo Image
+
+![image](https://github.com/srikanth30510/FasalMovieLibrary/assets/110710256/a13d6379-441b-4846-b808-f9c7b53a68f0)
+
+
+
+
+## Deployment
+
+I have deployed it in Render.com
+
+The website is live now at->
+
+https://fasalmovielibrarybysrikanth.onrender.com/
+
+
+```
 
